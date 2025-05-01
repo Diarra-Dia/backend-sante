@@ -7,20 +7,21 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,          
-      forbidNonWhitelisted: true, 
-      transform: true,          
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
       transformOptions: {
-        enableImplicitConversion: true, 
+        enableImplicitConversion: true,
       },
       validationError: {
-        target: false,          
-        value: true             
-      }
+        target: false,
+        value: true,
+      },
     }),
   );
 
-  await app.listen(3000);
-  console.log(`✅ Application running at ${await app.getUrl()}`);
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
+  console.log(`✅ Application running at http://localhost:${port}`);
 }
 bootstrap();
